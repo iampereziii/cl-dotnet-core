@@ -1,0 +1,17 @@
+C:\LocalInstance\CLDotNetCore\Bulky.Data\bin\Debug\net7.0\Bulky.Data.deps.json
+C:\LocalInstance\CLDotNetCore\Bulky.Data\bin\Debug\net7.0\Bulky.Data.runtimeconfig.json
+C:\LocalInstance\CLDotNetCore\Bulky.Data\bin\Debug\net7.0\Bulky.Data.dll
+C:\LocalInstance\CLDotNetCore\Bulky.Data\bin\Debug\net7.0\Bulky.Data.pdb
+C:\LocalInstance\CLDotNetCore\Bulky.Data\bin\Debug\net7.0\BulkyWeb.Domain.dll
+C:\LocalInstance\CLDotNetCore\Bulky.Data\bin\Debug\net7.0\BulkyWeb.Domain.pdb
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.csproj.AssemblyReference.cache
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.AssemblyInfoInputs.cache
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.AssemblyInfo.cs
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.csproj.CoreCompileInputs.cache
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.csproj.CopyComplete
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.dll
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\refint\Bulky.Data.dll
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.pdb
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\Bulky.Data.genruntimeconfig.cache
+C:\LocalInstance\CLDotNetCore\Bulky.Data\obj\Debug\net7.0\ref\Bulky.Data.dll

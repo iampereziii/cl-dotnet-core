@@ -1,0 +1,12 @@
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\bin\Debug\net7.0\BulkyWeb.Domain.deps.json
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\bin\Debug\net7.0\BulkyWeb.Domain.dll
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\bin\Debug\net7.0\BulkyWeb.Domain.pdb
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.csproj.AssemblyReference.cache
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.AssemblyInfoInputs.cache
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.AssemblyInfo.cs
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.csproj.CoreCompileInputs.cache
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.dll
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\refint\BulkyWeb.Domain.dll
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\BulkyWeb.Domain.pdb
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Domain\obj\Debug\net7.0\ref\BulkyWeb.Domain.dll

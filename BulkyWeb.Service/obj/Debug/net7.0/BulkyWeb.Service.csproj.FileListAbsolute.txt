@@ -1,0 +1,12 @@
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\bin\Debug\net7.0\BulkyWeb.Service.deps.json
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\bin\Debug\net7.0\BulkyWeb.Service.dll
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\bin\Debug\net7.0\BulkyWeb.Service.pdb
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.csproj.AssemblyReference.cache
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.AssemblyInfoInputs.cache
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.AssemblyInfo.cs
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.csproj.CoreCompileInputs.cache
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.dll
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\refint\BulkyWeb.Service.dll
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\BulkyWeb.Service.pdb
+C:\LocalInstance\CLDotNetCore\BulkyWeb.Service\obj\Debug\net7.0\ref\BulkyWeb.Service.dll
