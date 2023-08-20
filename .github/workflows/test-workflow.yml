@@ -2,7 +2,7 @@ name: Test Workflow run
 on: [workflow_dispatch]
   
 jobs:
-  run-shell-command:
+  build:
     runs-on: ubuntu-latest
     steps: 
       - name: echo a string
