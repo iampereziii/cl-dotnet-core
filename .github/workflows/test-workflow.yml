@@ -21,7 +21,8 @@ jobs:
   run-windwos-commands:
     needs: [run-shell-command]
     runs-on: windows-latest
-    needs: ["run-shell-command"]
+    environment:
+      name: TEST ENV
     steps:
       - name: Directory PowerShell
         run: Get-Location 
