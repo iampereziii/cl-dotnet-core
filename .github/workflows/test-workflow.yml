@@ -19,7 +19,7 @@ jobs:
           (platform.processor())
         shell: python
   run-01:
-    needs: [run-shell-command]
+    needs: [build]
     runs-on: windows-latest
     environment:
       name: TEST ENV 01
@@ -30,7 +30,7 @@ jobs:
         run: pwd 
         shell: bash
   run-02:
-    needs: [run-shell-command]
+    needs: [build]
     runs-on: windows-latest
     environment:
       name: TEST ENV 02
