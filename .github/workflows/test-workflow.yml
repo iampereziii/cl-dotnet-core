@@ -18,14 +18,25 @@ jobs:
           print
           (platform.processor())
         shell: python
-  run-windwos-commands:
+  run-01:
     needs: [run-shell-command]
     runs-on: windows-latest
     environment:
-      name: TEST ENV
+      name: TEST ENV 01
     steps:
       - name: Directory PowerShell
         run: Get-Location 
       - name: Directory Bash 
         run: pwd 
-        shell: bash 
+        shell: bash
+  run-02:
+    needs: [run-shell-command]
+    runs-on: windows-latest
+    environment:
+      name: TEST ENV 02
+    steps:
+      - name: Directory PowerShell
+        run: Get-Location 
+      - name: Directory Bash 
+        run: pwd 
+        shell: bash
