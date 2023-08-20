@@ -1,5 +1,5 @@
 name: Test Workflow run
-on: [push]
+on: [workflow_dispatch]
 jobs:
   run-shell-command:
     runs-on: ubuntu-latest
