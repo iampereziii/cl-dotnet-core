@@ -13,3 +13,9 @@
 /.vs/ProjectEvaluation/cldotnetcore.projects.v7.bin
 /.vs/CLDotNetCore/DesignTimeBuild/.dtbcache.v2
 /.vs/CLDotNetCore/v17/.suo
+/BulkyWeb/bin/Debug/net7.0/Bulky.Data.dll
+/BulkyWeb/bin/Debug/net7.0/Bulky.Data.pdb
+/Bulky.Data/bin/Debug/net7.0/Bulky.Data.dll
+/Bulky.Data/bin/Debug/net7.0/Bulky.Data.pdb
+/Bulky.Data/obj/Debug/net7.0/Bulky.Data.dll
+/Bulky.Data/obj/Debug/net7.0/Bulky.Data.pdb
