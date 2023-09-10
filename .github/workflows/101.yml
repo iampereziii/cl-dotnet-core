@@ -23,4 +23,4 @@ jobs:
       - name: echo a string
         run: Write-Output "Windows String"
       - name: Error Step
-        run: echo "test skip"
+        run: echo "test action skip"
