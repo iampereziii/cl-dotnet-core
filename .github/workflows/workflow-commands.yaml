@@ -18,3 +18,7 @@ jobs:
           echo "::group::New Group"
           echo "Inside this group"
           echo "::endgroup::"
+      - name: Masking
+        run: echo "::add-mask::Secret word"
+      - name: Echo Masking
+        run: echo "Secret word"
