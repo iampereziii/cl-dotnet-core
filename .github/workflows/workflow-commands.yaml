@@ -1,0 +1,9 @@
+name: Workflow Commands
+on: [push]
+
+jobs:
+  testfing-wf-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set error echo
+        run: echo "::error::test"
