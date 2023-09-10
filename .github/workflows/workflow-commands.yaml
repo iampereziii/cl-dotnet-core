@@ -13,3 +13,8 @@ jobs:
         run: echo "::warning title=Error title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing Semicolon"
       - name: Log a notice
         run: echo "::notice title=Error title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing Semicolon" 
+      - name: Groupd input
+        run: |
+          echo "::group::New Group"
+          echo "Inside this group"
+          echo "::endgroup::"
