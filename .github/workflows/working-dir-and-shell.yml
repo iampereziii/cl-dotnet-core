@@ -16,6 +16,9 @@ jobs:
         run: cd
   display-wd-info-mac:
     runs-on: macos-latest
+    defaults:
+      run:
+        shell: sh
     steps:
       - name: Display Working Directory & List Files
         run: |
