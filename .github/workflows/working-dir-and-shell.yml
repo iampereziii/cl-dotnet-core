@@ -1,0 +1,17 @@
+name: Working with DIR & Shells 
+on: [push]
+defaults:
+  run:
+    shell: cmd
+jobs:
+  display-info-one:
+    runs-on: windows-latest
+    steps:
+      - name: Display work dir and list of files
+        run: |
+          cd
+          dir
+      - name: Change working directory 
+        working-directory: /
+        run: cd
+
