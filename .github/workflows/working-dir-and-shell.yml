@@ -14,4 +14,15 @@ jobs:
       - name: Change working directory 
         working-directory: /
         run: cd
+  display-wd-info-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Display Working Directory & List Files
+        run: |
+          pwd
+      - name: Python Shell
+        shell: python
+        run: |
+          import platform 
+          print(platform.processor())
 
