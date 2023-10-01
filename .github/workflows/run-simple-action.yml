@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Simple Action
         id: greet
-        uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
+        uses: actions/hello-world-javascript-action@main
         with: 
           who-to-greet: Ali
       - name: Log Greet time
