@@ -21,4 +21,4 @@ jobs:
       - name: List Files After
         run: ls -a
   call-workflow-passing-data:
-    uses: ./checkout.yml@develop
+    uses: ./.github/workflows/checkout.yml@develop
