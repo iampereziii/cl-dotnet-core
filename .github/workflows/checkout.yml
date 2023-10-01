@@ -1,5 +1,5 @@
 name: Checkout test
-on: [push]
+on: [push, workflow_call]
 
 jobs:
    checkout-and-display-files:
