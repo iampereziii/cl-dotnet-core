@@ -3,10 +3,10 @@ on: [push]
 
 jobs:
    checkout-and-display-files:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: List Files Before
-        run: dir
+        run: ls -a
       - name: Checkout
         run: |
           git init
@@ -14,5 +14,5 @@ jobs:
           git fetch origin
           git checkout develop
       - name: List Files After
-        run: dir
+        run: ls -a
       
