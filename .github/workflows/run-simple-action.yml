@@ -12,3 +12,12 @@ jobs:
           who-to-greet: Mommy 
       - name: Log Greet time
         run: echo "Test ${{ steps.test-id.outputs.time }}"
+  auto-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout one
+        run: ls -a
+        uses: actions/checkout@v3
+      - name: List Files After
+        run: ls -a
+      
