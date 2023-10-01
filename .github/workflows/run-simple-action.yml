@@ -1,0 +1,24 @@
+name: Run Simple Action
+on: [push]
+
+jobs:
+  simple-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple Action
+        id: test-id
+        uses: actions/hello-world-javascript-action@main
+        with: 
+          who-to-greet: Mommy 
+      - name: Log Greet time
+        run: echo "Test ${{ steps.test-id.outputs.time }}"
+  auto-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files
+        run: ls -a
+      - uses: actions/checkout@v3
+      - name: List Files After
+        run: ls -a
+  manual-checkout:
+    uses: ./.github/workflows/checkout.yml
