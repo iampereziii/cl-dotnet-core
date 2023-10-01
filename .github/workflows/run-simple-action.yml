@@ -1,4 +1,4 @@
-name: Run Simple Action 
+name: Run Simple Action  
 on: [push]
 
 jobs:
