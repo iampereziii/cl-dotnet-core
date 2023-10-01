@@ -15,7 +15,7 @@ jobs:
   auto-checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout one
+      - name: List files
         run: ls -a
       - uses: actions/checkout@v3
       - name: List Files After
