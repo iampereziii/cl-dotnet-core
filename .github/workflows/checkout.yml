@@ -1,4 +1,4 @@
-name: Checkout test
+name: Checkout test test
 on: [push, workflow_call]
 
 jobs:
