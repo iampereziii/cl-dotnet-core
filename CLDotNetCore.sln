@@ -5,11 +5,11 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWeb", "BulkyWeb\BulkyWeb.csproj", "{B155F265-C132-4CF5-BDAD-869E81386776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkyWeb.Service", "BulkyWeb.Service\BulkyWeb.Service.csproj", "{5FC762B4-B0D4-445E-9BD4-CCCF0182FF5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWeb.Service", "BulkyWeb.Service\BulkyWeb.Service.csproj", "{5FC762B4-B0D4-445E-9BD4-CCCF0182FF5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkyWeb.Domain", "BulkyWeb.Domain\BulkyWeb.Domain.csproj", "{B03CEE00-87A7-4B3E-BD37-E36EE35828FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWeb.Domain", "BulkyWeb.Domain\BulkyWeb.Domain.csproj", "{B03CEE00-87A7-4B3E-BD37-E36EE35828FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.Data", "Bulky.Data\Bulky.Data.csproj", "{68B768FD-AB8D-429F-9369-9116B9C7F229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bulky.Data", "Bulky.Data\Bulky.Data.csproj", "{68B768FD-AB8D-429F-9369-9116B9C7F229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
