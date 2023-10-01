@@ -20,5 +20,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: List Files After
         run: ls -a
-  call-workflow-passing-data:
+  manual-checkout:
     uses: ./.github/workflows/checkout.yml
