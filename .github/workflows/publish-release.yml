@@ -1,4 +1,4 @@
-name: "Publish new release"
+name: "Publish new release test"
 # Reference for helpers below
 # https://github.com/actions/github-script
 # https://octokit.github.io/rest.js/v19
