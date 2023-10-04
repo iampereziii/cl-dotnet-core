@@ -26,6 +26,6 @@ jobs:
         run: git push origin release/${{ github.event.inputs.version }}
 
       - name: create pull request
-        run: gh pr create -B release/${{ github.event.inputs.version }} -H develop --title 'release/${{ github.event.inputs.version }}' --body 'Incoming release:release/${{ github.event.inputs.version }}'
+        run: gh pr create -B release/${{ github.event.inputs.version }} -H develop --title 'develop -> release/${{ github.event.inputs.version }}' --body "- PR for the incoming release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
