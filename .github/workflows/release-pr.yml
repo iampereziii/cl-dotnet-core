@@ -1,0 +1,16 @@
+name: Create PR of Release to Main
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Test
+        run: ls
+
