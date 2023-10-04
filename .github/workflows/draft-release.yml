@@ -6,7 +6,7 @@ on:
       version:
         description: 'The version you want to release.'
         required: true
-    repository: develop
+   
 
 jobs:
   draft-new-release:
