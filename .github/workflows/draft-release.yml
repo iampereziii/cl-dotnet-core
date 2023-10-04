@@ -1,4 +1,4 @@
-name: "Draft new release  "
+name: "Draft new release"
 
 on:
   workflow_dispatch:
@@ -6,7 +6,6 @@ on:
       version:
         description: 'The version you want to release.'
         required: true
-   
 
 jobs:
   draft-new-release:
@@ -25,8 +24,8 @@ jobs:
 
       - name: Push new branch
         run: git push origin release/${{ github.event.inputs.version }}
-    
+
       - name: create pull request
-        run: gh pr create -B main -H release/${{ github.event.inputs.version }} --title 'release/${{ github.event.inputs.version }}' --body 'release/${{ github.event.inputs.version }}'
+        run: gh pr create -B release/${{ github.event.inputs.version }} -H develop --title 'release/${{ github.event.inputs.version }}' --body 'Incoming release:release/${{ github.event.inputs.version }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
