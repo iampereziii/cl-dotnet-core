@@ -15,7 +15,7 @@ jobs:
           echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
           echo ${GITHUB_REF#refs/heads/}
       - name: create pull request
-        run: gh pr create -B release/test-8 -H main --title '${GITHUB_REF#refs/heads/} -> master' --body "- Release "
+        run: gh pr create -B ${GITHUB_REF#refs/heads/} -H main --title '${GITHUB_REF#refs/heads/} -> master' --body "- Release "
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
