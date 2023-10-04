@@ -1,4 +1,4 @@
-name: First Workflow tet
+name: First Workflow tet test
 
 on: [push]
 
