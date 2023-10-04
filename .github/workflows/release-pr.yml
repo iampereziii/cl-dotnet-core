@@ -12,5 +12,5 @@ jobs:
     steps:
 
       - name: Test
-        run: ls
+        run: echo ${{ github.head_ref }} ${{ github.sha }}
 
