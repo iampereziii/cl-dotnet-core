@@ -87,8 +87,8 @@ jobs:
     name: Magnolia WAR file Deployment
     steps:
       - name: Deploy
-        run: echo "Deploying
-    
+        run: echo "Deploying"
+
     # needs:
     # - build
     # uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
@@ -111,6 +111,6 @@ jobs:
 
       - name: Lowercase profile
         run: echo "Lowercase profile"
-      
+
       - name: Build and Publish Docker Image
         run: echo "Build and Publish Docker Image"
