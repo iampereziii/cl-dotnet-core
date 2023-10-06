@@ -1,1 +1,133 @@
 
+# workflow_dispatch enabled #
+
+name: Build and Deploy to servers
+
+on:
+  workflow_dispatch:
+    inputs:
+      servers:
+        type: choice
+        description: "Author or Public or both"
+        required: true
+        default: "both"
+        options:
+          - author
+          - public
+          - both
+      aws_region:
+        description: "AWS Region"
+        required: true
+        default: "eu-west-1"
+      profile:
+        required: true
+        description: "DEV/TEST/PROD"
+        type: choice
+        options:
+          - DEV
+          - TEST
+          - PROD
+        default: DEV
+permissions:
+  id-token: write
+  contents: read # This is required for actions/checkout
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build:
+    name: Magnolia Build - ${{ github.event.inputs.version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build info
+        run: echo "Build ${{github.run_number}} running on branch ${{github.ref_name}}..."
+      - uses: actions/checkout@v3
+
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.ARN_GITHUB_PROD }}
+          role-session-name: Accelerator_Github_OIDC
+          aws-region: ${{ github.event.inputs.aws_region }}
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: |
+          mkdir -p ~/.m2
+          mv mavenconfig/* ~/.m2/
+          sed -i 's?{secrets.maven_master}?${{ secrets.MAVEN_MASTER }}?g' ~/.m2/settings-security.xml
+          sed -i 's?{secrets.maven_magnolia_username}?${{ secrets.MAVEN_MAGNOLIA_USERNAME }}?g' ~/.m2/settings.xml
+          sed -i 's?{secrets.maven_magnolia_password}?${{ secrets.MAVEN_MAGNOLIA_PASSWORD }}?g' ~/.m2/settings.xml
+          sed -i 's?{secrets.maven_sanofi_username}?${{ secrets.MAVEN_SANOFI_USERNAME }}?g' ~/.m2/settings.xml
+          sed -i 's?{secrets.maven_sanofi_password}?${{ secrets.MAVEN_SANOFI_PASSWORD }}?g' ~/.m2/settings.xml
+          mvn -B package --file pom.xml
+      - name: Upload war file to S3
+        run: |
+          echo "uploading to all environment S3 repositories..."
+          aws --region us-east-1 s3 cp hcpv2-webapp/target/hcpv2-webapp-1.0-SNAPSHOT.war s3://magnolia-prod-hcpv2/builds/war/${{ github.run_number }}/ROOT.war --storage-class STANDARD
+          aws --region us-east-1 s3 cp hcpv2-webapp/target/hcpv2-webapp-1.0-SNAPSHOT.war s3://magnolia-prod-hcpv2/builds/war/latest/ROOT.war --storage-class STANDARD
+          ls -al
+          echo "BUILD SUCCESSFULLY UPLOADED TO s3://magnolia-prod-hcpv2/builds/war/${{ github.run_number }}"
+      - name: Archive war file
+        uses: actions/upload-artifact@v3
+        with:
+          name: magnolia-war-${{ github.run_number }}
+          retention-days: 5
+          path: |
+            hcpv2-webapp/target/hcpv2-webapp-1.0-SNAPSHOT.war
+
+  deploy:
+    name: Magnolia WAR file Deployment
+    needs:
+    - build
+    uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
+    with:
+      servers: ${{ inputs.servers }}
+      profile: ${{ inputs.profile }}
+      aws_region: ${{ inputs.aws_region }}
+      war_file: ${{ github.run_number }}
+    secrets: inherit
+
+  generate-image-artifact:
+    name: Generate artifact
+    runs-on: ubuntu-latest
+    needs: 
+      - build
+      - deploy
+    steps:
+      - name: Download war artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: magnolia-war-${{ github.run_number }}
+
+      - name: Lowercase profile
+        run: |
+          LC_PROFILE=$(echo ${{ github.event.inputs.profile }} | awk '{print tolower($0)}')
+          echo "LC_PROFILE=${LC_PROFILE}" >>$GITHUB_ENV
+
+      - name: Build and Publish Docker Image
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          echo "Build magnolia docker image version: ${{ github.event.inputs.profile }}-${{ github.run_number }}"
+          echo "FROM tomcat:9-jdk11-slim" >> Dockerfile
+          echo "RUN rm -rf /usr/local/tomcat/webapps/ROOT" >> Dockerfile
+          echo "ENV AWS_REGION us-east-1" >> Dockerfile
+          echo "RUN mkdir -p /opt/magnolia/config" >> Dockerfile
+          echo "COPY hcpv2-webapp-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war" >> Dockerfile
+          docker buildx create --use --name=qemu
+          docker buildx inspect --bootstrap
+          IMAGE_NAME=magnolia-hcp-${LC_PROFILE}
+          IMAGE_TAG=${{ github.run_number }}
+          IMAGE_LATEST=ghcr.io/${{ github.repository_owner }}/$(echo $IMAGE_NAME):latest
+          IMAGE_LATEST=$(echo $IMAGE_LATEST | tr '[A-Z]' '[a-z]')
+          IMAGE_VERSIONED=ghcr.io/${{ github.repository_owner }}/$(echo $IMAGE_NAME):$(echo $IMAGE_TAG)
+          IMAGE_VERSIONED=$(echo $IMAGE_VERSIONED | tr '[A-Z]' '[a-z]')
+          echo "$IMAGE_VERSIONED"
+          docker buildx build . --platform linux/amd64,linux/arm64 --file Dockerfile --push --tag $IMAGE_VERSIONED --tag $IMAGE_LATEST --label "runnumber=${{ github.event.inputs.war_version }}"
