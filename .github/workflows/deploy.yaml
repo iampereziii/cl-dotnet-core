@@ -1,6 +1,6 @@
 # workflow_dispatch enabled #
 
-name: Build and Deploy to servers
+name: Build and Deploy to servers - ${{ inputs.profile }}
 
 on:
   workflow_dispatch:
@@ -37,7 +37,7 @@ permissions:
 
 jobs:
   build:
-    name: Magnolia Build - ${{ inputs.profile }}
+    name: Magnolia Build
     runs-on: ubuntu-latest
     steps:
       - name: Build info
