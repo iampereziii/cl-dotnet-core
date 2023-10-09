@@ -1,0 +1,16 @@
+name: "Draft hotfix"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version you want to release.'
+        required: true
+
+jobs:
+  draft-hotfix:
+    name: "Draft a hotfix release"
+    uses: ./.github/workflows/branch-off-main.yml
+    with:
+      branch-name: hotfix
+       
