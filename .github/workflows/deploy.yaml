@@ -90,6 +90,14 @@ jobs:
       - name: Deploy
         run: echo "Deploying"
 
+      - name: Dump Contexts
+        run: |
+          echo '${{ toJson(github) }}'
+          echo '${{ toJson(job) }}'
+          echo '${{ toJson(secrets) }}'
+          echo '${{ toJson(steps) }}'
+          echo '${{ toJson(runner) }}'
+
    
     # uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
     # with:
@@ -133,3 +141,4 @@ jobs:
     steps:
       - name: Deploy TEST  
         run: echo "TEST DEPLOYMENT"
+  
