@@ -12,5 +12,5 @@ jobs:
     name: Draft a new release
     uses: ./.github/workflows/branch-off-main.yml
     with:
-      for-prod: true
+      for-prod: false
       branch-name: release/${{ inputs.version }}
