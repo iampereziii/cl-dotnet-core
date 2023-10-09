@@ -83,7 +83,10 @@ jobs:
   generate-image-artifact: # refactor to dynamic get the selected env
     name: Generate artifact
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: |
+       always()
+       && contains(needs.*.result, 'success')
+       && !contains(needs.*.result, 'failure')
     needs:
       - build
       - dev-deploy
