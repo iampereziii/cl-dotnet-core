@@ -1,13 +1,19 @@
-name: "Branch off from master"
-run-name: Create ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
+name: "Branch off "
+run-name: Create a ${{ inputs.branch-name }}
 on:
   workflow_call:
     inputs:
       branch-name:
         description: 'The version you want to release.'
         default: 'release'
-        required: false
+        required: true
         type: string
+      repo:
+        description: 'The branch you want to branch off'
+        default: 'develop'
+        required: true
+        type: string
+
 
 jobs:
   branch-from-main:
@@ -27,4 +33,8 @@ jobs:
       - name: Push new branch
         run: git push origin ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
 
-      
+      - name: create pull request
+        if: ${{ inputs.branch-name == 'release' }}
+        run: gh pr create -B ${{ inputs.branch-name }}/${{ github.event.inputs.version }} -H ${{ inputs.branch-name }} --title '${{ inputs.branch-name }} -> ${{ inputs.branch-name }}/${{ github.event.inputs.version }}' --body "- PR for the incoming release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

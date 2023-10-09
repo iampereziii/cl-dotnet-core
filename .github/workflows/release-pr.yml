@@ -1,11 +1,13 @@
-name: Create PR of Release to Main
+name: Create PR of Release to Master
 
 on:
   push:
     branches:
       - 'release/**'
+
 jobs:
   create-pr:
+    name: Create Release PR to Master
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +20,7 @@ jobs:
       - name: Set current date as env variable
         run: echo "NOW=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: create pull request
-        run: gh pr create -B main -H ${GITHUB_REF#refs/heads/} --title "Release:${NOW}" --body "- ${GITHUB_REF#refs/heads/} -> master"
+      - name: Create PR to master
+        run: gh pr create -B master -H ${GITHUB_REF#refs/heads/} --title "Release:${NOW}" --body "- ${GITHUB_REF#refs/heads/} -> master"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
