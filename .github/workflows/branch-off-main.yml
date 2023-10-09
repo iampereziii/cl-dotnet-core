@@ -23,7 +23,7 @@ jobs:
 
       - name: Create release branch
         run: | #dapat main to lagi
-          echo $${{ toJson(github.event) }}  
+          echo ${{ toJson(github) }}  
           git checkout -b ${{ inputs.branch-name }}
 
       - name: Initialize mandatory git config
