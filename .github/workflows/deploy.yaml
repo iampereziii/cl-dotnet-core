@@ -148,4 +148,6 @@ jobs:
           echo ${{ inputs.servers }}
           echo ${{ inputs.profile }}
           echo "PROD DEPLOYMENT"
+          echo ${{ github.run_number }}
+          echo: ${{ github.event.inputs.profile }}-${{ github.run_number }}"
   
