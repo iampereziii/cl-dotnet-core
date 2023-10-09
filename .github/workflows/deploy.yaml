@@ -1,6 +1,6 @@
 # workflow_dispatch enabled #
 name: Build and Deploy to servers
-run-name: Build and Deploy to ${{ inputs.profile }} servers
+run-name: ${{ inputs.profile }} - Build and Deploy to  servers
 on:
   workflow_dispatch:
     inputs:
