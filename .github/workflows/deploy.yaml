@@ -24,7 +24,6 @@ on:
         options:
           - DEV
           - TEST
-          - PROD
         default: DEV
 permissions:
   id-token: write
@@ -111,7 +110,7 @@ jobs:
       - name: Deploy TEST  
         run: echo "TEST DEPLOYMENT"
   test-deploy:
-    if: inputs.profile == 'PROD' || inputs.profile == 'TEST'
+    if: inputs.profile == 'TEST'
     needs: build
     name: TEST DEPLOYMENT
     runs-on: ubuntu-latest
