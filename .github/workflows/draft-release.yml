@@ -1,17 +1,16 @@
-name: "Draft new release"
+name: Draft new release
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The version you want to release.'
+        description: 'The version you want to release'
         required: true
 
 jobs:
   draft-new-release:
-    name: "Draft a new release"
+    name: Draft a new release
     uses: ./.github/workflows/branch-off-main.yml
     with:
-      for-prod: false
+      for-prod: true
       branch-name: release/${{ inputs.version }}
-      

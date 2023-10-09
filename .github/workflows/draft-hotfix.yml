@@ -1,16 +1,16 @@
-name: "Draft hotfix"
-run-name: Create hotfix/${{ inputs.version }}
+name: Draft hotfix release
+run-name: Draft hotfix/${{ inputs.version }}
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The version you want to release.'
+        description: 'The version you want to hotfix release'
         required: true
 
 jobs:
-  draft-new-release:
-    name: "Draft a new release"
+  draft-new-hotfix-release:
+    name: Create hotfix release
     uses: ./.github/workflows/branch-off-main.yml
     with:
       hotfix: false
