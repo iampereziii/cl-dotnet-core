@@ -1,4 +1,4 @@
-name: First Workflow test
+name: First Workflow tes
 on: [push]
 
 jobs:
