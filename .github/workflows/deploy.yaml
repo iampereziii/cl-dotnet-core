@@ -80,39 +80,14 @@ jobs:
       #     retention-days: 5
       #     path: |
       #       hcpv2-webapp/target/hcpv2-webapp-1.0-SNAPSHOT.war
-
-  deploy:
-    runs-on: ubuntu-latest
-    name: Magnolia WAR file Deployment
-    needs:
-      - build
-    steps:
-      - name: Deploy
-        run: echo "Deploying"
-
-      - name: Dump Contexts
-        run: |
-          echo '${{ toJson(github) }}'
-          echo '${{ toJson(job) }}'
-          echo '${{ toJson(secrets) }}'
-          echo '${{ toJson(steps) }}'
-          echo '${{ toJson(runner) }}'
-
-   
-    # uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
-    # with:
-    #   servers: ${{ inputs.servers }}
-    #   profile: ${{ inputs.profile }}
-    #   aws_region: ${{ inputs.aws_region }}
-    #   war_file: ${{ github.run_number }}
-    # secrets: inherit
-
-  generate-image-artifact:
+  generate-image-artifact: # refactor to dynamic get the selected env
     name: Generate artifact
     runs-on: ubuntu-latest
     needs:
       - build
-      - deploy
+      - dev-deploy
+      - test-deploy
+      - prod-deploy
     steps:
       - name: Download war artifact
         run:  echo "Download war artifact"
