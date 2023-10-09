@@ -8,11 +8,6 @@ on:
         default: 'release'
         required: true
         type: string
-      repo:
-        description: 'The branch you want to branch off'
-        default: 'develop'
-        required: true
-        type: string
 
 
 jobs:
@@ -41,6 +36,6 @@ jobs:
 
       - name: create pull request
         if: ${{ inputs.branch-name == 'release' }}
-        run: gh pr create -B ${{ inputs.repo }} -H $BRANCH_NAME --title '${{ inputs.branch-name }} -> $BRANCH_NAME' --body "- PR for the incoming release"
+        run: gh pr create -B main -H $BRANCH_NAME --title '${{ inputs.branch-name }} -> $BRANCH_NAME' --body "- PR for the incoming release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
