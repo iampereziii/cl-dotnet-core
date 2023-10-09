@@ -10,7 +10,14 @@ on:
 jobs:
   draft-new-release:
     name: "Draft a new release"
-    uses: ./.github/workflows/branch-off-main.yml
-    with:
-      branch-name: release
-       
+    runs-on: ubuntu-latest
+    steps:
+      - name: Branch off main
+        uses: ./.github/workflows/branch-off-main.yml
+        with:
+          branch-name: release
+
+      - name: create pull request
+        run: gh pr create -B release/${{ github.event.inputs.version }} -H develop --title 'develop -> release/${{ github.event.inputs.version }}' --body "- PR for the incoming release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
