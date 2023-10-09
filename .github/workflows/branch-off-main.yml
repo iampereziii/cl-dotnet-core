@@ -1,5 +1,5 @@
 name: "Branch off master"
-run-name: Create a ${{ inputs.branch-name }}
+
 on:
   workflow_call:
     inputs:
@@ -17,7 +17,6 @@ on:
 jobs:
 
   branch-from-main:
-    name: "Draft a branch from main"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,6 +35,7 @@ jobs:
         run: git push origin ${{ inputs.branch-name }}
 
       - name: Create PR to release
+        if: inputs.for-prod == true
         run: gh pr create -B ${{ inputs.branch-name }} -H develop --title 'develop -> ${{ inputs.branch-name }}' --body "- ${{ inputs.branch-name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
