@@ -84,12 +84,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Magnolia WAR file Deployment
+    needs:
+      - build
     steps:
       - name: Deploy
         run: echo "Deploying"
 
-    # needs:
-    # - build
+   
     # uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
     # with:
     #   servers: ${{ inputs.servers }}
@@ -114,13 +115,13 @@ jobs:
       - name: Build and Publish Docker Image
         run: echo "Build and Publish Docker Image"
   
-  test-deploy:
+  dev-deploy:
     name: TEST DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
         run: echo "TEST DEPLOYMENT"
-  dev-deploy:
+  test-deploy:
     name: TEST DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
