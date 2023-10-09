@@ -1,0 +1,33 @@
+name: "Branch off from master"
+run-name: Create a ${{ inputs.branch-name }}
+on:
+  workflow_call:
+    inputs:
+      branch-name:
+        description: 'The version you want to release.'
+        default: 'release'
+        required: false
+        type: string
+
+jobs:
+  branch-from-main:
+    name: "Draft a branch from main"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create release branch
+        run: git checkout -b ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
+
+      - name: Initialize mandatory git config
+        run: |
+          git config user.name "GitHub actions"
+          git config user.email noreply@github.com
+
+      - name: Push new branch
+        run: git push origin ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
+
+      - name: create pull request
+        run: gh pr create -B ${{ inputs.branch-name }}/${{ github.event.inputs.version }} -H develop --title 'develop -> ${{ inputs.branch-name }}/${{ github.event.inputs.version }}' --body "- PR for the incoming release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
