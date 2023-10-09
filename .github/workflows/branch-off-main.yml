@@ -3,8 +3,8 @@ name: "Branch off master"
 on:
   workflow_call:
     inputs:
-      for-prod:
-        description: 'Determine if branch is for prod release.'
+      hotfix:
+        description: 'Determine if branch is for hotfix.'
         default: false
         required: true
         type: boolean

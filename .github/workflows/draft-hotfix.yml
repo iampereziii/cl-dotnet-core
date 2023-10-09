@@ -13,6 +13,6 @@ jobs:
     name: "Draft a new release"
     uses: ./.github/workflows/branch-off-main.yml
     with:
-      for-prod: true
+      hotfix: false
       branch-name: hotfix/${{ inputs.version }}
        
