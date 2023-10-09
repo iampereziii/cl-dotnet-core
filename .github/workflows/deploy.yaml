@@ -83,6 +83,7 @@ jobs:
   generate-image-artifact: # refactor to dynamic get the selected env
     name: Generate artifact
     runs-on: ubuntu-latest
+    if: ${{ always() }}
     needs:
       - build
       - dev-deploy
