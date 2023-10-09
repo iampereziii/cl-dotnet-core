@@ -1,30 +1,31 @@
-name: "Branch off "
+name: "Branch off master"
 run-name: Create a ${{ inputs.branch-name }}
 on:
   workflow_call:
     inputs:
+      for-prod:
+        description: 'Determine if branch is for prod release.'
+        default: false
+        required: true
+        type: boolean
       branch-name:
-        description: 'The version you want to release.'
-        default: 'release'
+        description: 'Branch name'
+        default: "release"
         required: true
         type: string
 
-
 jobs:
-  
 
   branch-from-main:
-    env:
-      BRANCH_NAME: ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
     name: "Draft a branch from main"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Create release branch
-        run: |
-          echo $${{ github.event }}
-          git checkout -b $BRANCH_NAME
+        run: | #dapat main to lagi
+          echo $${{ github.event }}  
+          git checkout -b ${{ inputs.branch-name }}
 
       - name: Initialize mandatory git config
         run: |
@@ -32,10 +33,9 @@ jobs:
           git config user.email noreply@github.com
 
       - name: Push new branch
-        run: git push origin $BRANCH_NAME
+        run: git push origin ${{ inputs.branch-name }}
 
-      - name: create pull request
-        if: ${{ inputs.branch-name == 'release' }}
-        run: gh pr create -B main -H $BRANCH_NAME --title '${{ inputs.branch-name }} -> $BRANCH_NAME' --body "- PR for the incoming release"
+      - name: Create PR to release
+        run: gh pr create -B ${{ inputs.branch-name }} -H develop --title 'develop -> ${{ inputs.branch-name }}' --body "- ${{ inputs.branch-name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
