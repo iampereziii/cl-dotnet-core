@@ -35,7 +35,7 @@ jobs:
         run: git push origin ${{ inputs.branch-name }}
 
       - name: Create PR to release
-        if: inputs.hotfix != true
+        if: inputs.hotfix == false
         run: gh pr create -B ${{ inputs.branch-name }} -H develop --title 'develop -> ${{ inputs.branch-name }}' --body "- ${{ inputs.branch-name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

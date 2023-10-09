@@ -13,6 +13,6 @@ jobs:
     name: Create hotfix release
     uses: ./.github/workflows/branch-off-main.yml
     with:
-      hotfix: false
+      hotfix: true
       branch-name: hotfix/${{ inputs.version }}
        
