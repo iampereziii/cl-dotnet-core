@@ -139,6 +139,7 @@ jobs:
         run: echo "TEST DEPLOYMENT"
   prod-deploy:
     if: inputs.profile == 'PROD'
+    name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
