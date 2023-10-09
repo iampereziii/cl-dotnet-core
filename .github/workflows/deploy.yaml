@@ -137,10 +137,8 @@ jobs:
     # secrets: inherit
     
   prod-deploy:
-    if: inputs.profile == 'PROD' 
     environment: PROD
     needs:
-      - build 
       - test-deploy
     name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
