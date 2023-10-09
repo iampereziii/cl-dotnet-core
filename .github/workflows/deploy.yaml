@@ -102,7 +102,7 @@ jobs:
         run: echo "Build and Publish Docker Image"
   
   dev-deploy:
-    if: inputs.profile == DEV 
+    if: inputs.profile == 'DEV'
     name: DEV DEPLOYMENT
     runs-on: ubuntu-latest
     needs: build
