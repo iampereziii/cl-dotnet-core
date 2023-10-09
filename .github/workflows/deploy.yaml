@@ -91,7 +91,7 @@ jobs:
       - prod-deploy
     steps:
       - name: Download war artifact
-        run:  echo "Download war artifact" ${{ needs }}
+        run:  echo "Download war artifact" ${{ toJson(needs) }}
 
       - name: Lowercase profile
         run: echo "Lowercase profile"
