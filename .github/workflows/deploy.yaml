@@ -111,6 +111,7 @@ jobs:
         run: echo "TEST DEPLOYMENT"
   test-deploy:
     if: inputs.profile == 'TEST'
+    environment: TEST
     needs: build
     name: TEST DEPLOYMENT
     runs-on: ubuntu-latest
@@ -137,6 +138,7 @@ jobs:
     
   prod-deploy:
     if: inputs.profile == 'PROD' 
+    environment: PROD
     needs:
       - build 
       - test-deploy
