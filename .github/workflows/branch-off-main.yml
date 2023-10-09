@@ -22,9 +22,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Create release branch
-        run: | #dapat main to lagi
-          echo ${{ toJson(github) }}  
-          git checkout -b ${{ inputs.branch-name }}
+        run: git checkout -b ${{ inputs.branch-name }}
 
       - name: Initialize mandatory git config
         run: |
