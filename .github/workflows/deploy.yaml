@@ -124,19 +124,21 @@ jobs:
         run: echo "Build and Publish Docker Image"
   
   dev-deploy:
+    if: inputs.profile == 'DEV'
     name: DEV DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
         run: echo "TEST DEPLOYMENT"
   test-deploy:
+    if: inputs.profile == 'TEST'
     name: TEST DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
         run: echo "TEST DEPLOYMENT"
   prod-deploy:
-    name: PROD DEPLOYMENT
+    if: inputs.profile == 'PROD'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
