@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'release/**'
+      - 'hotfix/**'
 
 jobs:
   create-pr:
@@ -24,3 +25,8 @@ jobs:
         run: gh pr create -B master -H ${GITHUB_REF#refs/heads/} --title "Release:${NOW}" --body "- ${GITHUB_REF#refs/heads/} -> master"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+
+

@@ -8,9 +8,10 @@ on:
         required: true
 
 jobs:
-  draft-hotfix:
-    name: "Draft a hotfix release"
+  draft-new-release:
+    name: "Draft a new release"
     uses: ./.github/workflows/branch-off-main.yml
     with:
-      branch-name: hotfix
+      for-prod: true
+      branch-name: hotfix/${{ inputs.version }}
        
