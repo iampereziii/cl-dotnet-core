@@ -16,14 +16,20 @@ on:
 
 
 jobs:
+  
+
   branch-from-main:
+    env:
+      BRANCH_NAME: ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
     name: "Draft a branch from main"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Create release branch
-        run: git checkout -b ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
+        run: |
+          echo $${{ github.event }}
+          git checkout -b $BRANCH_NAME
 
       - name: Initialize mandatory git config
         run: |
@@ -31,10 +37,10 @@ jobs:
           git config user.email noreply@github.com
 
       - name: Push new branch
-        run: git push origin ${{ inputs.branch-name }}/${{ github.event.inputs.version }}
+        run: git push origin $BRANCH_NAME
 
       - name: create pull request
         if: ${{ inputs.branch-name == 'release' }}
-        run: gh pr create -B ${{ inputs.branch-name }}/${{ github.event.inputs.version }} -H ${{ inputs.branch-name }} --title '${{ inputs.branch-name }} -> ${{ inputs.branch-name }}/${{ github.event.inputs.version }}' --body "- PR for the incoming release"
+        run: gh pr create -B ${{ inputs.repo }} -H $BRANCH_NAME --title '${{ inputs.branch-name }} -> $BRANCH_NAME' --body "- PR for the incoming release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
