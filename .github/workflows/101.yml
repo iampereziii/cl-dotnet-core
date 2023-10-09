@@ -1,4 +1,4 @@
-name: First Wtorkflow es testd tedst
+name: First Wtorkflow es testd tedst test
 on: [push]
 
 jobs:
