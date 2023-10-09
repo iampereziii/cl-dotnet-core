@@ -1,7 +1,6 @@
 # workflow_dispatch enabled #
-
 name: Build and Deploy to servers
-
+run-name: Build and Deploy to ${{ inputs.profile }} servers
 on:
   workflow_dispatch:
     inputs:
@@ -37,7 +36,7 @@ permissions:
 
 jobs:
   build:
-    name: Magnolia Build - ${{ inputs.profile }}
+    name: Magnolia Build
     runs-on: ubuntu-latest
     steps:
       - name: Build info
@@ -81,16 +80,54 @@ jobs:
       #     retention-days: 5
       #     path: |
       #       hcpv2-webapp/target/hcpv2-webapp-1.0-SNAPSHOT.war
-
-  deploy:
+  generate-image-artifact: # refactor to dynamic get the selected env
+    name: Generate artifact
     runs-on: ubuntu-latest
-    name: Magnolia WAR file Deployment
+    if: |
+       always()
+       && contains(needs.*.result, 'success')
+       && !contains(needs.*.result, 'failure')
+    needs:
+      - build
+      - dev-deploy
+      - test-deploy
+      - prod-deploy
+    steps:
+      - name: Download war artifact
+        run:  echo "Download war artifact ${{ toJson(needs) }}"
+
+      - name: Lowercase profile
+        run: echo "Lowercase profile"
+
+      - name: Build and Publish Docker Image
+        run: echo "Build and Publish Docker Image"
+  
+  dev-deploy:
+    if: inputs.profile == 'DEV' 
+    name: DEV DEPLOYMENT
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy TEST  
+        run: echo "TEST DEPLOYMENT"
+  test-deploy:
+    if: inputs.profile == 'PROD' || inputs.profile == 'TEST'
+    needs: build
+    name: TEST DEPLOYMENT
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy
-        run: echo "Deploying
-    
-    # needs:
-    # - build
+        run: echo "Deploying"
+
+      - name: Dump Contexts
+        run: |
+          echo '${{ toJson(github) }}'
+          echo '${{ toJson(job) }}'
+          echo '${{ toJson(secrets) }}'
+          echo '${{ toJson(steps) }}'
+          echo '${{ toJson(runner) }}'
+
+   
     # uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
     # with:
     #   servers: ${{ inputs.servers }}
@@ -98,19 +135,15 @@ jobs:
     #   aws_region: ${{ inputs.aws_region }}
     #   war_file: ${{ github.run_number }}
     # secrets: inherit
-
-  generate-image-artifact:
-    name: Generate artifact
-    runs-on: ubuntu-latest
+    
+  prod-deploy:
+    if: inputs.profile == 'PROD' 
     needs:
-      - build
-      - deploy
+      - build 
+      - test-deploy
+    name: PROD DEPLOYMENT
+    runs-on: ubuntu-latest
     steps:
-      - name: Download war artifact
-        run:  echo "Download war artifact"
-
-      - name: Lowercase profile
-        run: echo "Lowercase profile"
-      
-      - name: Build and Publish Docker Image
-        run: echo "Build and Publish Docker Image"
+      - name: Deploy TEST  
+        run: echo "TEST DEPLOYMENT"
+  
