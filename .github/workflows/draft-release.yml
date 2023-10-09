@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Branch off main
-        uses: ./.github/workflows/branch-off-main.yml
+        uses: ././.github/workflows/branch-off-main.yml
         with:
           branch-name: release
 
