@@ -116,7 +116,7 @@ jobs:
         run: echo "Build and Publish Docker Image"
   
   dev-deploy:
-    name: TEST DEPLOYMENT
+    name: DEV DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
@@ -128,7 +128,7 @@ jobs:
       - name: Deploy TEST  
         run: echo "TEST DEPLOYMENT"
   prod-deploy:
-    name: TEST DEPLOYMENT
+    name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
       - name: Deploy TEST  
