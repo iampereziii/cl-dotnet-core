@@ -1,8 +1,31 @@
 name: Environment Variables
-on: [push]
+on: 
+  workflow_dispatch:
+    inputs:
+      servers:
+        type: choice
+        description: "Author or Public or both"
+        required: true
+        default: "both"
+        options:
+          - author
+          - public
+          - both
+      aws_region:
+        description: "AWS Region"
+        required: true
+        default: "eu-west-1"
+      profile:
+        required: true
+        description: "DEV/TEST/PROD"
+        type: choice
+        options:
+          - DEV
+          - TEST
+        default: DEV  
 
 env:
-  WF_LEVEL_ENV: Available to all jobs
+  WF_LEVEL_ENV: ${{ inputs.profile }}
 
 jobs:
   env-vars-and-context:
@@ -24,4 +47,5 @@ jobs:
           echo '${{ env.STEP_LEVEL_ENV }}'
           echo $STEP_LEVEL_ENV
           echo $WF_LEVEL_ENV
+          echo ${{ env.WF_LEVEL_ENV }}
           echo $JOB_LEVEL_ENV
