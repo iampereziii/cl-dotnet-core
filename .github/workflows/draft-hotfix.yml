@@ -7,12 +7,21 @@ on:
       version:
         description: 'The version you want to hotfix release'
         required: true
-
+      profile:
+        required: true
+        description: "DEV/TEST/PROD"
+        type: choice
+        options:
+          - DEV
+          - TEST
+        default: DEV
+env:
+  PROFILE: ${{ inputs.profile }}
 jobs:
   draft-new-hotfix-release:
     name: Create hotfix release
     uses: ./.github/workflows/branch-off-main.yml
     with:
       hotfix: true
-      branch-name: hotfix/${{ inputs.version }}
+      branch-name: ${{ env.PROFILE }}
        
