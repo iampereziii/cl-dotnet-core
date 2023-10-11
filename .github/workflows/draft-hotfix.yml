@@ -20,12 +20,13 @@ env:
 jobs:
   set-env:
     outputs:
-      some_var: ${{ steps.set-env.outputs.env_profile }}
+      env_profile: ${{ steps.set-env.outputs.env_profile }}
     runs-on: ubuntu-latest
     steps:
       - name: Set
         id: set-env
         run: | 
+        
           echo "env_profile=${{ inputs.profile }}" >> $GITHUB_OUTPUT
   draft-new-hotfix-release:
     needs: set-env
