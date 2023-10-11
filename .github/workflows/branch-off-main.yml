@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: PRINT
+        run: echo ${{ inputs.branch-name }}
+
       - name: Create release branch
         run: git checkout -b ${{ inputs.branch-name }}
 
@@ -31,8 +34,7 @@ jobs:
 
       - name: Push new branch
         run: git push origin ${{ inputs.branch-name }}
-      - name: Push new branch
-        run: echo ${{ inputs.branch-name }}
+    
 
       - name: Create PR to release
         if: inputs.hotfix == false
