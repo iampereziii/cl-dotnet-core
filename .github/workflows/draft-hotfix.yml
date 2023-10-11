@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Set
         run: | 
-          echo "env_profile=$PROFILE" >> $GITHUB_OUTPUT
+          echo "env_profile=${{ inputs.profile }}" >> $GITHUB_OUTPUT
   draft-new-hotfix-release:
     needs: set-env
     name: Create hotfix release
