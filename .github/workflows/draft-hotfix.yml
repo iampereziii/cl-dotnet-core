@@ -23,5 +23,5 @@ jobs:
     uses: ./.github/workflows/branch-off-main.yml
     with:
       hotfix: true
-      branch-name: ${{ env.PROFILE }}
+      branch-name: $PROFILE
        
