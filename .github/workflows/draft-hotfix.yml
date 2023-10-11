@@ -18,10 +18,16 @@ on:
 env:
   PROFILE: ${{ inputs.profile }}
 jobs:
+  set-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set
+        run: | 
+          echo "env_profile=$PROFILE" >> $GITHUB_OUTPUT
   draft-new-hotfix-release:
+    needs: set-env
     name: Create hotfix release
     uses: ./.github/workflows/branch-off-main.yml
     with:
       hotfix: true
-      branch-name: $PROFILE
-       
+      branch-name: ${{ needs.set-env.outputs.env_profile }}
