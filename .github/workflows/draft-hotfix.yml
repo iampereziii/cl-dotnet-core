@@ -29,9 +29,10 @@ jobs:
         
           echo "env_profile=${{ inputs.profile }}" >> $GITHUB_OUTPUT
   draft-new-hotfix-release:
-    if: ${{ inputs.profile == 'DEV' }}
+    
     needs: build
     name: Create hotfix release
+    if: ${{ inputs.profile == 'DEV' }}
     uses: ./.github/workflows/branch-off-main.yml
     with:
       hotfix: true
