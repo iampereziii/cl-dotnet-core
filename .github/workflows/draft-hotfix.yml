@@ -34,4 +34,4 @@ jobs:
     uses: ./.github/workflows/branch-off-main.yml
     with:
       hotfix: true
-      branch-name: ${{ needs.build.outputs.env_profile }}
+      profile: ${{ needs.build.outputs.env_profile }}
