@@ -11,7 +11,7 @@ on:
       branch-name:
         description: 'Branch name'
         default: release
-        required: true
+        required: false
         type: string
       profile:
         description: 'Profile'
