@@ -1,5 +1,5 @@
 name: DEV Schedule Deploy
-on: workflow_call
+on: workflow_dispatch
 #  schedule:
 #    - cron: "0 14 * * *"
 #    - cron: "0/5 * * * *" # JUST FOR TESTING
