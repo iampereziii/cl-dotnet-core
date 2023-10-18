@@ -8,5 +8,5 @@ on: workflow_dispatch
 jobs:
   deploy-dev:
     name: Scheduled deploy test
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy.yaml
 
