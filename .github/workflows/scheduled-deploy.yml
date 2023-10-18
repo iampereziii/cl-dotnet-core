@@ -1,0 +1,12 @@
+name: DEV Schedule Deploy
+on: workflow_call
+#  schedule:
+#    - cron: "0 14 * * *"
+#    - cron: "0/5 * * * *" # JUST FOR TESTING
+
+
+jobs:
+  deploy-dev:
+    name: Scheduled deploy test
+    uses: ./.github/workflows/deploy.yml
+

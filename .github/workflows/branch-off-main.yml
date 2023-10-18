@@ -11,6 +11,11 @@ on:
       branch-name:
         description: 'Branch name'
         default: release
+        required: false
+        type: string
+      profile:
+        description: 'Profile'
+        default: DEV
         required: true
         type: string
 
@@ -20,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: PRINT
+        run: echo ${{ inputs.profile }}
 
       - name: Create release branch
         run: git checkout -b ${{ inputs.branch-name }}
@@ -31,6 +39,7 @@ jobs:
 
       - name: Push new branch
         run: git push origin ${{ inputs.branch-name }}
+    
 
       - name: Create PR to release
         if: inputs.hotfix == false
