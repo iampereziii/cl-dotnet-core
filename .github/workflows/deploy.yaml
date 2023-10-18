@@ -25,6 +25,23 @@ on:
           - DEV
           - TEST
         default: DEV
+  workflow_call:
+    inputs:
+      servers:
+        type: string
+        description: "Scheduled job server "
+        required: false
+        default: "both"
+      aws_region:
+        type: string
+        description: "Scheduled job AWS Region"
+        required: false
+        default: "eu-west-1"
+      profile:
+        type: string
+        required: false
+        description: "Scheduled job environment"
+        default: DEV
 permissions:
   id-token: write
   contents: read # This is required for actions/checkout
@@ -127,15 +144,6 @@ jobs:
           echo '${{ toJson(steps) }}'
           echo '${{ toJson(runner) }}'
 
-   
-    # uses: Sanofi-Accelerator/magnolia-infra-cms/.github/workflows/deploy_war_file.yaml@main
-    # with:
-    #   servers: ${{ inputs.servers }}
-    #   profile: ${{ inputs.profile }}
-    #   aws_region: ${{ inputs.aws_region }}
-    #   war_file: ${{ github.run_number }}
-    # secrets: inherit
-    
   prod-deploy:
     environment: PROD
     needs:
