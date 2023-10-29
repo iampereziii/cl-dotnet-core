@@ -1,4 +1,4 @@
-name: Workflow Run
+name: Workflow Run test
 on:
   workflow_run:
     workflows: [Repository Events]
