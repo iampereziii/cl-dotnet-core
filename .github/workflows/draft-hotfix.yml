@@ -1,0 +1,39 @@
+name: Draft hotfix release
+run-name: Draft hotfix/${{ inputs.version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version you want to hotfix release'
+        required: true
+      profile:
+        required: true
+        description: "DEV/TEST/PROD"
+        type: choice
+        options:
+          - DEV
+          - TEST
+        default: DEV
+env:
+  PROFILE: ${{ inputs.profile }}
+jobs:
+  build:
+    outputs:
+      env_profile: ${{ steps.set-env.outputs.env_profile }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set
+        id: set-env
+        run: | 
+        
+          echo "env_profile=${{ inputs.profile }}" >> $GITHUB_OUTPUT
+  draft-new-hotfix-release:
+    
+    needs: build
+    name: Create hotfix release
+    if: ${{ inputs.profile == 'DEV' }}
+    uses: ./.github/workflows/branch-off-main.yml
+    with:
+      hotfix: true
+      profile: ${{ needs.build.outputs.env_profile }}
