@@ -1,7 +1,7 @@
 name: Workflow Run test
 on:
   workflow_run:
-    workflows: [Repository Events]
+    workflows: [Draft hotfix release]
     types: [completed]
 jobs:
   echo-string:
