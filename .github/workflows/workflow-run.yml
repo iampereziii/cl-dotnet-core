@@ -1,0 +1,10 @@
+name: Workflow Run test
+on:
+  workflow_run:
+    workflows: [Draft hotfix release]
+    types: [completed]
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "I was triggered because 'Repository Events' was completed"
