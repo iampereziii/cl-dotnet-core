@@ -23,6 +23,10 @@ on:
           - DEV
           - TEST
         default: DEV  
+      environment:
+        description: "Environment"
+        type: environment
+        required: true
 
 env:
   WF_LEVEL_ENV: ${{ inputs.profile }}
@@ -49,3 +53,4 @@ jobs:
           echo $WF_LEVEL_ENV
           echo ${{ env.WF_LEVEL_ENV }}
           echo $JOB_LEVEL_ENV
+          echo "Environment: ${{ inputs.environment }}"
