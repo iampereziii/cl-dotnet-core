@@ -11,6 +11,11 @@ on:
       branch-name:
         description: 'Branch name'
         default: release
+        required: false
+        type: string
+      profile:
+        description: 'Profile'
+        default: DEV
         required: true
         type: string
 
@@ -21,10 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: PRINT
+        run: echo ${{ inputs.profile }}
+
       - name: Create release branch
-        run: | #dapat main to lagi
-          echo $${{ github.event }}  
-          git checkout -b ${{ inputs.branch-name }}
+        run: git checkout -b ${{ inputs.branch-name }}
 
       - name: Initialize mandatory git config
         run: |
@@ -33,6 +39,7 @@ jobs:
 
       - name: Push new branch
         run: git push origin ${{ inputs.branch-name }}
+    
 
       - name: Create PR to release
         if: inputs.hotfix == false
