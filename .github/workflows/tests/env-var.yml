@@ -57,7 +57,7 @@ jobs:
   env-vars-and-context-new:
     runs-on: ubuntu-latest
     # if: $GITHUB_REF == 'refs/heads/main' DONT DO THIS
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     env:
       JOB_LEVEL_ENV: Available to all steps in env-vars-and-context job
     steps:
@@ -71,13 +71,11 @@ jobs:
           echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
       - name: Multiline ENV Var
         run: |
-          DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
+          echo "RANDOM_JOKE<<EOF" >> "$GITHUB_ENV"
           echo "Here is a joke: " >> "$GITHUB_ENV"
           curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
           echo "" >> "$GITHUB_ENV"
-          echo "$DELIMITER" >> "$GITHUB_ENV"
-          echo $DELIMETER
+          echo "EOF" >> "$GITHUB_ENV"
       - name: Log Custom ENV Vars
         env:
           STEP_LEVEL_ENV: Available to only this step
