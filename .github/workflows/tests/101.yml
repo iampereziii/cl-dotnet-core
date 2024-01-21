@@ -1,4 +1,4 @@
-name: First Wtordkflow tes tedstd tedst
+name: First workflow - test
 on: [push]
 
 jobs:
